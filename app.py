@@ -3,15 +3,15 @@ import azure.cognitiveservices.speech as speechsdk
 import streamlit as st
 
 # Retrieve Azure Speech key and region from environment variables
-speech_key = os.environ.get("SPEECH_KEY")
-service_region = os.environ.get("SERVICE_REGION")
+azure_speech_key = os.environ.get("AZURE_SPEECH_KEY")
+azure_service_region = os.environ.get("AZURE_SERVICE_REGION")
 
-if not speech_key or not service_region:
-    st.error("Please set the SPEECH_KEY and SERVICE_REGION environment variables.")
+if not azure_speech_key or not azure_service_region:
+    st.error("Please set the AZURE_SPEECH_KEY and AZURE_SERVICE_REGION environment variables.")
     st.stop()
 
 # Speech configuration
-speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
+speech_config = speechsdk.SpeechConfig(subscription=azure_speech_key, region=azure_service_region)
 speech_config.speech_synthesis_voice_name = "en-IN-PrabhatNeural"
 
 # Text to be synthesized
