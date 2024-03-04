@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# Read environment variables from secrets.toml
-SPEECH_KEY=$(toml get secrets.toml env.SPEECH_KEY)
-SERVICE_REGION=$(toml get secrets.toml env.SERVICE_REGION)
+# Check if the .env file exists
+if [ ! -f .env ]; then
+  echo "Creating a new .env file"
+  touch .env
+fi
 
-# Set environment variables
-export SPEECH_KEY=$SPEECH_KEY
-export SERVICE_REGION=$SERVICE_REGION
+# Add or update Azure Speech environment variables in .env file
+echo "AZURE_SPEECH_KEY=8ada5b541bcb4f5ebbcb0d80eb332903" >> .env
+echo "AZURE_SERVICE_REGION=eastus" >> .env
 
-# Run the Streamlit app
-streamlit run your_app.py
+# Install dependencies
+pip install -r requirements.txt
